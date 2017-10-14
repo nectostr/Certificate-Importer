@@ -43,7 +43,6 @@ namespace AppTest
         {
             try
             { 
-                Directory.CreateDirectory("certificates_avalon");
                 WebClient webClient = new WebClient();
                 webClient.DownloadFile("http://www.avalon.ru/ca/AVALON CA.crt", "AVALON_CA.crt");
                 this.import_cert("AVALON_CA.crt");
