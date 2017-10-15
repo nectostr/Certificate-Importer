@@ -22,21 +22,18 @@ namespace AppTest
                 openFileDialog.Multiselect = false;
                 openFileDialog.Filter = "x509 certificate (*.cer; *.crt)|*.cer;*.crt";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                   
+                {                   
                     var cert_paths = openFileDialog.FileNames[0];    
                     this.import_cert(cert_paths);
                 }
                 else
-                {
-                      
-                    int num = (int)MessageBox.Show("Выберите сертификат!");
+                {                      
+                    MessageBox.Show("Выберите сертификат!");
                 }
             }
             catch (System.Exception exf)
 	        {
-
-                MessageBox.Show("Пожалуйста, приложите скриншот или текст этого отчета в письме технической поддержке или преподавателю\n\n" + exf.Message + "\nin load from file procedure");
+               		MessageBox.Show("Пожалуйста, приложите скриншот или текст этого отчета в письме технической поддержке или преподавателю\n\n" + exf.Message + "\nin load from file procedure");
 	        }
         }
 
@@ -65,7 +62,7 @@ namespace AppTest
                 {
                     if (certificate.SerialNumber == x509Certificate2.SerialNumber)
                     {
-                        int num = (int)MessageBox.Show("Сертификат уже установлен!");
+                        MessageBox.Show("Сертификат уже установлен!");
                         x509Store.Close();
                         return;
                     }
@@ -75,12 +72,12 @@ namespace AppTest
                 {
                     if (certificate.SerialNumber == x509Certificate2.SerialNumber)
                     {
-                        int num = (int)MessageBox.Show("Установка сертификата выполнена успешно!");
+                        MessageBox.Show("Установка сертификата выполнена успешно!");
                         x509Store.Close();
                         return;
                     }
                 }
-                int num1 = (int)MessageBox.Show("Неизвестная ошибка! Сертификат отсутствует!");
+                MessageBox.Show("Неизвестная ошибка! Сертификат отсутствует!");
                 x509Store.Close();
             }
             catch (System.Exception exi)
