@@ -17,19 +17,20 @@ namespace AppTest
 
         {  
             try
-            {        
+            {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = false;
                 openFileDialog.Filter = "x509 certificate (*.cer; *.crt)|*.cer;*.crt";
-                openFileDialog.ShowDialog();
-                var cert_paths = openFileDialog.FileNames[0];    
-                if (cert_paths.Equals(""))
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    int num = (int)MessageBox.Show("Выберите сертификат!");
+                   
+                    var cert_paths = openFileDialog.FileNames[0];    
+                    this.import_cert(cert_paths);
                 }
                 else
                 {
-                        this.import_cert(cert_paths);
+                      
+                    int num = (int)MessageBox.Show("Выберите сертификат!");
                 }
             }
             catch (System.Exception exf)
